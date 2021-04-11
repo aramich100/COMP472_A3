@@ -1,5 +1,9 @@
 import Node
 
+#TODO implement function for possible moves
+def possibleMoves(listOfTokens):
+    return 0
+
 #TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, maxPlayer):
