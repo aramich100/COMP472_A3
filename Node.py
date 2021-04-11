@@ -37,9 +37,9 @@ class Node:
         largestPrime = 1
 
         for i in range(len(self.listOfTokens)):
-            if isPrime(i):
+            if self.isPrime(i):
                 if i>largestPrime:
-                    if getSuccesotCount(i)>0:
+                    if self.getSuccesorCount(i)>0:
                         largestPrime = i
 
         return largestPrime
@@ -60,17 +60,17 @@ class Node:
                     return 0.5
             
             # LAST MOVE WAS PRIME
-            if(isPrime(self.move)):
-                count = getSuccesorCount(move)
+            if(self.isPrime(self.move)):
+                count = self.getSuccesorCount(self.move)
                 if(count % 2 ==0):
                     return -0.7
                 else:
                     return -0.7
 
             # LAST MOVE WAS COMPOSITE
-            if(not(isPrime(self.move))):
-                largestPrime = getLargestPrime(self.move)
-                count = getSuccesorCount(largestPrime)
+            if(not(self.isPrime(self.move))):
+                largestPrime = self.getLargestPrime(self.move)
+                count = self.getSuccesorCount(largestPrime)
                 if(count%2==0):
                     return -0.6
                 else:
@@ -91,17 +91,17 @@ class Node:
                     return -0.5
             
             # LAST MOVE WAS PRIME
-            if(isPrime(self.move)):
-                count = getSuccesorCount(move)
+            if(self.isPrime(self.move)):
+                count = self.getSuccesorCount(self.move)
                 if(count % 2 ==0):
                     return 0.7
                 else:
                     return -0.7
 
             # LAST MOVE WAS COMPOSITE
-            if(not(isPrime(self.move))):
-                largestPrime = getLargestPrime(self.move)
-                count = getSuccesorCount(largestPrime)
+            if(not(self.isPrime(self.move))):
+                largestPrime = self.getLargestPrime(self.move)
+                count = self.getSuccesorCount(largestPrime)
                 if(count%2==0):
                     return 0.6
                 else:
