@@ -1,7 +1,8 @@
 class Node:
 
-    def __init__(self,listOfTokens):
+    def __init__(self,listOfTokens,move):
         self.listOfTokens = listOfTokens
+        self.move = move
 
     #TODO add heuristic for return of eval of the node
     def getEvalNumber(self, player):
