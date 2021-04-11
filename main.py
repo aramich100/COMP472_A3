@@ -1,5 +1,3 @@
-from tokenize import Double
-
 import playTheGame
 import alphaBeta
 import Node
@@ -10,7 +8,9 @@ if __name__ == "__main__":
     gameOrAlgo = input("Would you like to play the game or run the algo?")
 
     if "game" in gameOrAlgo.lower():
-        playTheGame()
+        l = [2,3,4,5,6,7]
+        N = Node(l, 4)
+        print(N.getEvalNumber("maxplayer"))
     elif "algo" in gameOrAlgo.lower():
         print("andre is a bitch")
 
