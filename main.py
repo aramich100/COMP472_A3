@@ -1,5 +1,9 @@
+from tokenize import Double
+
 import playTheGame
 import alphaBeta
+import Node
+import copy
 
 if __name__ == "__main__":
 
@@ -17,5 +21,15 @@ if __name__ == "__main__":
 
         # TODO run the alphabeta algo
         #  in the alphabeta algo, the prints for the outputs will be done
+        fullList = [1,2,3,4,5]
+        cutList = [1,2]
+        nodes = []
+        for num in cutList:
+            tempList = copy.deepcopy(fullList)
+            tempList.remove(num)
+            alpha = Double.NEGATIVE_INFINITY
+            beta = Double.Positive_Infinity
+            alphaBeta.miniMax(Node(num, tempList), "depth", alpha, beta, "maxPlayer")
+
     else:
         exit()
