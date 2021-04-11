@@ -1,15 +1,18 @@
 import Node
 
-#TODO implement function for possible moves
+
+# TODO implement function for possible moves
 def possibleMoves(listOfTokens):
     return 0
 
-#TODO implement minimax, alpha-beta pruning algorithm
+
+# TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
-def miniMax(node, depth, alpha, beta, maxPlayer):
+def miniMax(node, depth, alpha, beta, player):
+    if depth == 0 or len(node.listOfTokens) == 1:
+        return node.getEvalNumber(player)
+
     return 0
-
-
 
 
 #TODO print out the result of the alphabeta algo
