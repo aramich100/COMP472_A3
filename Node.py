@@ -18,7 +18,7 @@ class Node:
             return True
   
 
-    # Returns number of succesors 
+    # Returns number of succesors
     def getSuccesorCount(self, move):
         count = 0
         for i in range(len(self.listOfTokens)):
@@ -30,7 +30,7 @@ class Node:
                 if (self.listOfTokens[i] % move == 0):
                     count += 1
 
-        return count
+        return count+1
 
     # Returns largest prime that is a succesor
     def getLargestPrime(self, move):
@@ -48,7 +48,7 @@ class Node:
     def getEvalNumber(self, player):
         if player is "maxPlayer":
             # TOKEN 1 NOT TAKEN
-            if '1' in self.listOfTokens:
+            if 1 in self.listOfTokens:
                 return 0
 
             # LAST MOVE WAS 1
@@ -77,9 +77,8 @@ class Node:
                     return 0.6
 
         else:
-            print("do min Player eval")
            # TOKEN 1 NOT TAKEN
-            if '1' in self.listOfTokens:
+            if 1 in self.listOfTokens:
                 return 0
 
             # LAST MOVE WAS 1
