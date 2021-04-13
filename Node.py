@@ -6,7 +6,7 @@ class Node:
 
     #TODO add heuristic for return of eval of the node
     def getEvalNumber(self, player):
-        if player is "maxPlayer":
+        if player == "maxPlayer":
             print("do max Player eval")
         else:
             print("do min Player eval")
