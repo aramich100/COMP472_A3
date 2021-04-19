@@ -1,19 +1,26 @@
+import math
+from tokenize import Double
+
 import playTheGame
 import alphaBeta
-import Node
+from node import *
 import copy
 
+class statistic:
+
+    def __init__(self):
+        self.nodesVisited = 0
+        self.nodesEvaluated = 0
+        self.deepest = math.inf
+
+
 if __name__ == "__main__":
-
     gameOrAlgo = input("Would you like to play the game or run the algo?")
-
     if "game" in gameOrAlgo.lower():
         l = [2,3,4,5,6,7]
-        N = Node(l, 4)
+        N = node(l, 4, -1)
         print(N.getEvalNumber("maxplayer"))
     elif "algo" in gameOrAlgo.lower():
-        print("andre is a bitch")
-
         # TODO get user inputs.
         #  PNT Player <#tokens> <#taken_tokens> <list_of_taken_tokens> <depth>
         #  this can be done either by asking the user or by taking in a file.
@@ -27,9 +34,9 @@ if __name__ == "__main__":
         for num in cutList:
             tempList = copy.deepcopy(fullList)
             tempList.remove(num)
-            alpha = Double.NEGATIVE_INFINITY
-            beta = Double.Positive_Infinity
-            alphaBeta.miniMax(Node(num, tempList), "depth", alpha, beta, "maxPlayer")
+            alpha = math.inf
+            beta = -math.inf
+            alphaBeta.miniMax(Node(tempList, num,""), 10, alpha, beta, "maxplayer")
 
     else:
         exit()

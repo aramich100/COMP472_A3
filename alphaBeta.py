@@ -1,21 +1,65 @@
-import Node
+import copy
+import math
+from node import *
+
+# class Statistic:
+#     def __init__(self):
 
 
 # TODO implement function for possible moves
-def possibleMoves(listOfTokens):
-    return 0
+def possibleMoves(node):
+    length = len(node.listOfTokens)
+    maxNum = max(node.listOfTokens)
+
+    moves = []
+    # Not the first move
+    if maxNum > length:
+        for num in node.listOfTokens:
+            if num % node.move == 0 or node.move % num == 0:
+                if num != node.move:
+                    moves.append(num)
+    return moves
 
 
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, player):
+    global deepest
+    global nodesVisited
+
     if depth == 0 or len(node.listOfTokens) == 1:
         return node.getEvalNumber(player)
 
-    return 0
+    nodesVisited = nodesVisited + 1
+    if player == "maxplayer":
+        maxEval = -math.inf
+        for childNum in possibleMoves(node):
+            node1 = createNode(node, childNum)
+            eva = miniMax(node1, depth - 1, alpha, beta, "minplayer")
+            maxEval = max(maxEval, eva)
+            alpha = max(alpha, maxEval)
+            if beta <= alpha:
+                break
+        return maxEval
+    else:
+        minEval = math.inf
+        for childNum in possibleMoves(node):
+            node1 = createNode(node, childNum)
+            eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer")
+            minEval = min(minEval, eva)
+            beta = min(alpha, minEval)
+            if beta <= alpha:
+                break
+        return minEval
 
 
-#TODO print out the result of the alphabeta algo
+def createNode(node, childNum):
+    tempList = copy.deepcopy(node.listOfTokens)
+    tempList.remove(childNum)
+    return Node(tempList, childNum, node.lastMoves + str(node.move))
+
+
+# TODO print out the result of the alphabeta algo
 # The best move (i.e., the tokens number that is to be taken) for the current player (as computed by your
 # alpha-beta algorithm)
 # The value associated with the move (as computed by your alpha-beta algorithm)
