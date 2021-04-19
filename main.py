@@ -13,7 +13,6 @@ class Statistic:
         self.nodesEvaluated = 0
         self.deepest = math.inf
 
-
 if __name__ == "__main__":
     gameOrAlgo = input("Would you like to play the game or run the algo?")
     if "game" in gameOrAlgo.lower():
@@ -35,8 +34,8 @@ if __name__ == "__main__":
         for num in cutList:
             tempList = copy.deepcopy(fullList)
             tempList.remove(num)
-            alpha = math.inf
-            beta = -math.inf
+            alpha = -math.inf
+            beta = math.inf
             values.append(alphaBeta.miniMax(Node(tempList, num,""), 10, alpha, beta, "maxplayer",stats))
         
         for value in values:

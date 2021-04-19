@@ -2,10 +2,6 @@ import copy
 import math
 from node import *
 
-# class Statistic:
-#     def __init__(self):
-
-
 # TODO implement function for possible moves
 def possibleMoves(node):
     length = len(node.listOfTokens)
@@ -18,16 +14,20 @@ def possibleMoves(node):
             if num % node.move == 0 or node.move % num == 0:
                 if num != node.move:
                     moves.append(num)
+    else: 
+        for num in node.listOfTokens:
+            if num%2 == 1 and num < len(node.listOfTokens):
+                moves.append(num)
     return moves
 
 
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, player,stats):
-
     if depth == 0 or len(node.listOfTokens) == 1:
         return node.getEvalNumber(player)
 
+    #print(node.listOfTokens)
     stats.nodesVisited = stats.nodesVisited + 1
     if player == "maxplayer":
         maxEval = -math.inf
