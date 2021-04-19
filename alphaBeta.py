@@ -23,19 +23,17 @@ def possibleMoves(node):
 
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
-def miniMax(node, depth, alpha, beta, player):
-    global deepest
-    global nodesVisited
+def miniMax(node, depth, alpha, beta, player,stats):
 
     if depth == 0 or len(node.listOfTokens) == 1:
         return node.getEvalNumber(player)
 
-    nodesVisited = nodesVisited + 1
+    stats.nodesVisited = stats.nodesVisited + 1
     if player == "maxplayer":
         maxEval = -math.inf
         for childNum in possibleMoves(node):
             node1 = createNode(node, childNum)
-            eva = miniMax(node1, depth - 1, alpha, beta, "minplayer")
+            eva = miniMax(node1, depth - 1, alpha, beta, "minplayer",stats)
             maxEval = max(maxEval, eva)
             alpha = max(alpha, maxEval)
             if beta <= alpha:
@@ -45,9 +43,9 @@ def miniMax(node, depth, alpha, beta, player):
         minEval = math.inf
         for childNum in possibleMoves(node):
             node1 = createNode(node, childNum)
-            eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer")
+            eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer",stats)
             minEval = min(minEval, eva)
-            beta = min(alpha, minEval)
+            beta = min(beta, minEval)
             if beta <= alpha:
                 break
         return minEval

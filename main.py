@@ -6,7 +6,7 @@ import alphaBeta
 from node import *
 import copy
 
-class statistic:
+class Statistic:
 
     def __init__(self):
         self.nodesVisited = 0
@@ -30,13 +30,17 @@ if __name__ == "__main__":
         #  in the alphabeta algo, the prints for the outputs will be done
         fullList = [1,2,3,4,5]
         cutList = [1,2]
-        nodes = []
+        values = []
+        stats = Statistic()
         for num in cutList:
             tempList = copy.deepcopy(fullList)
             tempList.remove(num)
             alpha = math.inf
             beta = -math.inf
-            alphaBeta.miniMax(Node(tempList, num,""), 10, alpha, beta, "maxplayer")
+            values.append(alphaBeta.miniMax(Node(tempList, num,""), 10, alpha, beta, "maxplayer",stats))
+        
+        for value in values:
+            print(value)
 
     else:
         exit()
