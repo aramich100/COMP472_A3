@@ -11,7 +11,7 @@ https://github.com/aramich100/COMP472_A3
 
 
 # Introduction
-In this assignment, we implemented and analyzed theha-Beta pruning algorithm to play a two-player game called
+In this assignment, we implemented and analyzed the Alpha-Beta pruning algorithm to play a two-player game called
 PNT: pick numbered-tokens..
 
 The rules for the PNT game are as followed:
