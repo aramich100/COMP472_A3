@@ -11,8 +11,15 @@ https://github.com/aramich100/COMP472_A3
 
 
 # Introduction
+In this assignment, we implemented and analyzed theha-Beta pruning algorithm to play a two-player game called
+PNT: pick numbered-tokens..
 
-
+The rules for the PNT game are as followed:
+- The game start with n token
+- Player take turns removing a token with some conditions
+- At the first move, the first player must choose an odd-numbered token that is strictly less than n/2
+- The next move the token number that a player can take must be a multiple or factor of the last move
+- If a player cannot take a token, he/she loses the game.
 
 # Instructions
   
@@ -27,3 +34,8 @@ git clone https://github.com/aramich100/COMP472_A3
 ```
 py main.py 
 ```
+
+# Alpha-Beta Pruning
+- Ignores (cuts off/prunes) branches of the tree that cannot contribute to the solution
+- Reduces branching factor
+- allows deeper search with same effort
