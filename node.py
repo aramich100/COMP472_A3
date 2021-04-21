@@ -1,3 +1,6 @@
+import copy
+
+
 class Node:
 
     def __init__(self,listOfTokens, move, lastMoves):
@@ -45,9 +48,22 @@ class Node:
 
         return largestPrime
 
+    def isGameOver(self):
+        tempList = copy.deepcopy(self.listOfTokens)
+        tempList.remove(self.move)
+        # If count is 1, game is over
+        if self.getSuccesorCount(self.move, tempList) == 1:
+            return True
+
+        return False
+
     #TODO add heuristic for return of eval of the node
     def getEvalNumber(self, player):
-        if player == "maxPlayer":
+        if player == "maxplayer":
+
+            if self.getSuccesorCount(self.move) == 1:
+                return 1
+
             # TOKEN 1 NOT TAKEN
             if 1 in self.listOfTokens:
                 return 0
@@ -79,6 +95,10 @@ class Node:
 
         else:
             # TOKEN 1 NOT TAKEN
+
+            if self.getSuccesorCount(self.move) == 1:
+                return -1
+
             if 1 in self.listOfTokens:
                 return 0
 

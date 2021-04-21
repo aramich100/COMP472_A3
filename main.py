@@ -15,7 +15,7 @@ class Statistic:
         self.nodesEvaluated = 0
         self.deepest = math.inf
 
-def print(node,stats,value):
+def printOutput(node,stats,value):
     print("Move: ", node.move)
     print("Value: ", value)
     print("Number of Nodes Visited: ", stats.nodesVisited)
@@ -48,6 +48,10 @@ if __name__ == "__main__":
         initalNode = Node(fullList, list_of_taken_tokens[len(list_of_taken_tokens)-1], "")
         cutList = alphaBeta.possibleMoves(initalNode)
 
+    player = "maxplayer"
+    if taken_tokens % 2 == 1:
+        player = "minplayer"
+
     values = []
     stats = Statistic()
     for num in cutList:
@@ -55,6 +59,6 @@ if __name__ == "__main__":
         tempList.remove(num)
         alpha = -math.inf
         beta = math.inf
-        values.append(alphaBeta.miniMax(Node(tempList, num, ""), depth, alpha, beta, "maxplayer", stats))
+        values.append(alphaBeta.miniMax(Node(tempList, num, ""), depth, alpha, beta, player, stats))
     for i in values:
         print(i)

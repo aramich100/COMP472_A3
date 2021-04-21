@@ -11,12 +11,15 @@ def possibleMoves(node):
     # Not the first move
     if maxNum > length:
         for num in node.listOfTokens:
-            if num % node.move == 0 or node.move % num == 0:
+            if num % node.move == 0 and node.move < num:
+                if num != node.move:
+                    moves.append(num)
+            elif node.move % num == 0 and node.move > num:
                 if num != node.move:
                     moves.append(num)
     else: 
         for num in node.listOfTokens:
-            if num%2 == 1 and num < len(node.listOfTokens):
+            if num % 2 == 1 and num < len(node.listOfTokens):
                 moves.append(num)
     return moves
 
@@ -24,14 +27,15 @@ def possibleMoves(node):
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, player,stats):
-    if depth == 0 or len(node.listOfTokens) == 1:
+    moves = possibleMoves(node)
+    if depth == 0 or len(moves) == 0:
         return node.getEvalNumber(player)
 
     #print(node.listOfTokens)
     stats.nodesVisited = stats.nodesVisited + 1
     if player == "maxplayer":
         maxEval = -math.inf
-        for childNum in possibleMoves(node):
+        for childNum in moves:
             node1 = createNode(node, childNum)
             eva = miniMax(node1, depth - 1, alpha, beta, "minplayer",stats)
             maxEval = max(maxEval, eva)
@@ -41,7 +45,7 @@ def miniMax(node, depth, alpha, beta, player,stats):
         return maxEval
     else:
         minEval = math.inf
-        for childNum in possibleMoves(node):
+        for childNum in moves:
             node1 = createNode(node, childNum)
             eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer",stats)
             minEval = min(minEval, eva)
