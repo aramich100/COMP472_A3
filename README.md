@@ -15,10 +15,10 @@ In this assignment, we implemented and analyzed the Alpha-Beta pruning algorithm
 PNT: pick numbered-tokens..
 
 The rules for the PNT game are as followed:
-- The game start with n token
+- The game starts with n token
 - Player take turns removing a token with some conditions
 - At the first move, the first player must choose an odd-numbered token that is strictly less than n/2
-- The next move the token number that a player can take must be a multiple or factor of the last move
+- In the next move, the token that a player can take must be a multiple or factor of the last move
 - If a player cannot take a token, he/she loses the game.
 
 # Instructions
