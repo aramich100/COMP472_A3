@@ -5,6 +5,9 @@ from node import *
 # TODO implement function for possible moves
 def possibleMoves(node):
     length = len(node.listOfTokens)
+    if length == 0:
+        return []
+
     maxNum = max(node.listOfTokens)
 
     moves = []
@@ -27,8 +30,12 @@ def possibleMoves(node):
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, player,stats):
+    if depth < stats.depth:
+        stats.depth = depth
+
     moves = possibleMoves(node)
     if depth == 0 or len(moves) == 0:
+        stats.nodesEvaluated += 1
         return node.getEvalNumber(player)
 
     #print(node.listOfTokens)
@@ -37,7 +44,7 @@ def miniMax(node, depth, alpha, beta, player,stats):
         maxEval = -math.inf
         for childNum in moves:
             node1 = createNode(node, childNum)
-            eva = miniMax(node1, depth - 1, alpha, beta, "minplayer",stats)
+            eva = miniMax(node1, depth - 1, alpha, beta, "minplayer", stats)
             maxEval = max(maxEval, eva)
             alpha = max(alpha, maxEval)
             if beta <= alpha:
@@ -47,7 +54,7 @@ def miniMax(node, depth, alpha, beta, player,stats):
         minEval = math.inf
         for childNum in moves:
             node1 = createNode(node, childNum)
-            eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer",stats)
+            eva = miniMax(node1, depth - 1, alpha, beta, "maxplayer", stats)
             minEval = min(minEval, eva)
             beta = min(beta, minEval)
             if beta <= alpha:
