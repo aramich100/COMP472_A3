@@ -30,8 +30,8 @@ def possibleMoves(node):
 # TODO implement minimax, alpha-beta pruning algorithm
 # record values for the print out
 def miniMax(node, depth, alpha, beta, player,stats):
-    if depth < stats.depth:
-        stats.depth = depth
+    if depth < stats.deepest:
+        stats.deepest = depth
 
     moves = possibleMoves(node)
     if depth == 0 or len(moves) == 0:
